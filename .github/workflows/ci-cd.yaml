@@ -35,6 +35,14 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         # Note: If using SonarCloud, use SONAR_TOKEN and the sonar-project.properties will handle the rest
 
+      - name: SonarQube Quality Gate Check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        # Force a timeout after 5 minutes to avoid hanging indefinitely
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+
       # - name: Trivy FS Scan (Security)
       #   uses: aquasecurity/trivy-action@master
       #   with:
