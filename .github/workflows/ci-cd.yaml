@@ -26,4 +26,20 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        
 
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        # Note: If using SonarCloud, use SONAR_TOKEN and the sonar-project.properties will handle the rest
+
+      # - name: Trivy FS Scan (Security)
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     scan-type: 'fs'
+      #     ignore-unfixed: true
+      #     format: 'table'
+      #     exit-code: '1' # Fail the build if vulnerabilities are found
+      #     severity: 'CRITICAL,HIGH'
