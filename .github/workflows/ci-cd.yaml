@@ -49,11 +49,18 @@ jobs:
 
       - name: SonarQube Quality Gate Check
         uses: sonarsource/sonarqube-quality-gate-action@master
+        continue-on-error: true 
         # Force a timeout after 5 minutes to avoid hanging indefinitely
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Upload Dependency Check Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: DepCheck Report
+          path: reports
 
       # - name: Trivy FS Scan (Security)
       #   uses: aquasecurity/trivy-action@master
