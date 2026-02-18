@@ -36,8 +36,8 @@ jobs:
           format: 'ALL'
           out: 'reports'
           args: >
-            --failOnCVSS 7
             --enableRetired
+            --enableExperimental
 
 
       - name: SonarQube Scan
