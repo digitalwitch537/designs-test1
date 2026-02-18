@@ -40,12 +40,12 @@ jobs:
             --enableRetired
             --enableExperimental
 
-      - name: Debug - List reports
-        run: |
-         echo "Current directory:"
-         pwd
-         echo "Reports folder:"
-         ls -R reports || echo "No reports folder found"
+      # - name: Debug - List reports
+      #   run: |
+      #    echo "Current directory:"
+      #    pwd
+      #    echo "Reports folder:"
+      #    ls -R reports || echo "No reports folder found"
 
 
       - name: SonarQube Scan
@@ -56,7 +56,9 @@ jobs:
         with:
           args: > 
            -Dsonar.projectKey=aura-app
-           -Dsonar.dependencyCheck.reportPath=reports/dependency-check-report.xml
+           -Dsonar.sources=.
+           -Dsonar.dependencyCheck.reportPath=${{ github.workspace }}/reports/dependency-check-report.xml
+           -Dsonar.dependencyCheck.htmlReportPath=${{ github.workspace }}/reports/dependency-check-report.html
 
       - name: SonarQube Quality Gate Check
         uses: sonarsource/sonarqube-quality-gate-action@master
