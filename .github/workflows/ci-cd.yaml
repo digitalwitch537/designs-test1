@@ -40,6 +40,9 @@ jobs:
             --enableRetired
             --enableExperimental
 
+      - name: Show Dependency-Check Report
+        run: head -n 20 reports/dependency-check-report.xml
+
       # - name: Debug - List reports
       #   run: |
       #    echo "Current directory:"
