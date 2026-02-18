@@ -40,17 +40,6 @@ jobs:
             --enableRetired
             --enableExperimental
 
-      - name: Show Dependency-Check Report
-        run: head -n 20 reports/dependency-check-report.xml
-
-      # - name: Debug - List reports
-      #   run: |
-      #    echo "Current directory:"
-      #    pwd
-      #    echo "Reports folder:"
-      #    ls -R reports || echo "No reports folder found"
-
-
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v2
         env:
