@@ -40,6 +40,14 @@ jobs:
             --enableRetired
             --enableExperimental
 
+      - name: Debug - List reports
+        run: |
+         echo "Current directory:"
+         pwd
+         echo "Reports folder:"
+         ls -R reports || echo "No reports folder found"
+
+
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v2
         env:
